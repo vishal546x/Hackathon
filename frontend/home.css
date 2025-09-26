@@ -1,20 +1,43 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* --- Root Variables for Theme --- */
+:root {
+    --primary-color: #3f51b5; /* Indigo */
+    --primary-dark: #303f9f; /* Darker Indigo */
+    --accent-color: #00bcd4; /* Cyan */
+    --background-light: #f5f7fa; /* Light Blue-Grey */
+    --text-dark: #263238; /* Dark Grey */
+    --text-medium: #546e7a; /* Medium Grey */
+    --card-bg: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+}
+
+/* --- Global & Body Styles --- */
+* {
+    box-sizing: border-box;
     margin: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Changed font */
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
+/* --- Header Styles --- */
 header {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: var(--primary-color);
     padding: 15px 0;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    color: white;
 }
 
 header .container {
@@ -24,35 +47,257 @@ header .container {
 }
 
 .logo {
+    font-family: 'Montserrat', sans-serif; /* Changed font */
+    font-size: 2rem;
+    color: white;
+    font-weight: 700;
+}
+
+.user-info span {
+    margin-right: 15px;
+    font-size: 1rem;
+}
+
+.user-info strong {
     font-weight: 600;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-#user-display-name {
-    font-weight: normal;
+    color: var(--accent-color);
 }
 
 #sign-out-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    background-color: #ef5350; /* Red for sign out */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #sign-out-btn:hover {
-    background-color: #e6e6e6;
+    background-color: #e53935; /* Darker red */
+    transform: translateY(-2px);
 }
 
-main {
-    padding: 40px 0;
+/* --- Main Content Styles --- */
+main .container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+main h2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Changed font */
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* --- Card Container & Card Styles --- */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px var(--shadow-light);
+    padding: 30px;
+    text-align: center; /* Center content within card by default */
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px var(--shadow-medium);
+}
+
+/* NEW: Company Logo Styling */
+.company-logo {
+    width: 100px; /* Fixed size for logos */
+    height: 100px;
+    border-radius: 50%; /* Make them circular */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 0 5px rgba(0, 188, 212, 0.2); /* Accent ring */
+    transition: transform 0.3s ease;
+    opacity: 0; /* Hidden initially for animation */
+    animation: fade-in-image 0.8s ease forwards;
+    animation-delay: 0.5s; /* Delay image fade-in */
+}
+
+.card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: var(--text-medium);
+    margin-bottom: 25px;
+    flex-grow: 1;
+    text-align: center; /* Ensure description is centered */
+}
+
+.card ul {
+    list-style: none;
+    margin-bottom: 30px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    width: 100%; /* Take full width of card for list */
+    text-align: left; /* Align list items left */
+}
+
+.card li {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card li:last-child {
+    border-bottom: none;
+}
+
+.card li strong {
+    color: var(--text-dark);
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: auto;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* --- Animations --- */
+
+/* Keyframes for main title fade in and slide down */
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+}
+
+/* Keyframes for card fade in */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.card.animate-fade-in {
+    opacity: 0; /* Hide cards initially */
+    animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Apply staggered animation delay to cards */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+.card:nth-child(8) { animation-delay: 0.8s; }
+.card:nth-child(9) { animation-delay: 0.9s; }
+.card:nth-child(10) { animation-delay: 1.0s; }
+
+
+/* Keyframes for company logo fade in */
+@keyframes fade-in-image {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    main h2 {
+        font-size: 2.2rem;
+    }
+
+    .card {
+        min-width: 280px;
+        max-width: 90%; /* Allow cards to take more width on smaller screens */
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .user-info {
+        font-size: 0.9rem;
+    }
+
+    #sign-out-btn {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .user-info {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .user-info span {
+        margin-right: 0; /* Reset margin */
+    }
 }

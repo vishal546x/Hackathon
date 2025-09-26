@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Roadmap Details - SkillRoute</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="roadmap-details.css">
+
+</head>
+
+<body class="bg-gray-50">
+
+
+
+    <header class="bg-white shadow-sm">
+
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+            <a href="home.html" class="text-3xl font-bold text-indigo-600">SkillRoute</a>
+
+            <div class="flex items-center space-x-4">
+
+                 <a href="home.html" class="text-gray-600 hover:text-indigo-600">Back to Companies</a>
+
+                <button id="sign-out-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition">Sign Out</button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <main class="container mx-auto px-6 py-12">
+
+        <div class="mb-10">
+
+            <h2 id="roadmap-title" class="text-4xl font-extrabold text-gray-900">Loading Roadmap...</h2>
+
+            <p id="roadmap-description" class="mt-3 text-lg text-gray-600"></p>
+
+        </div>
+
+
+
+        <div id="stages-container" class="space-y-8">
+
+            <p id="loading-message" class="text-center text-gray-500">Fetching curriculum...</p>
+
+        </div>
+
+    </main>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+   
+
+    <script src="roadmap-details.js"></script>
+
+
+
+</body>

@@ -3,18 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to SkillRoute</title>
+    <title>SkillRoute - Login</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <div id="login-container">
-        <h1>Welcome to SkillRoute</h1>
-        <p>Your guided path to a new career starts here.</p>
-        <button id="google-login-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google icon">
-            Sign in with Google
+<body data-theme="dark"> <div class="split-screen-container">
+        <button class="theme-toggle">
+            <div class="theme-toggle-indicator"></div>
         </button>
-        <div id="loader" class="hidden"></div>
+        
+        <div class="branding-pane">
+            <div class="globe-icon">
+                <i class="fas fa-globe"></i> 
+            </div>
+            <div class="text-content">
+                <p>Designed for All Educational Institutions</p>
+                <h1>Welcome to the Education Automation Program and Parent Information System!</h1>
+            </div>
+            <div class="illustration-placeholder">
+                <img src="h1.jpg" alt="Education Illustration" class="main-illustration">
+            </div>
+        </div>
+
+        <div class="login-pane">
+            <div id="container">
+                
+                <div id="login-view">
+                    <h1>Sign in to SkillRoute</h1>
+                    <p>Continue your journey with Google</p>
+                    <button id="google-signin-btn" class="google-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google icon">
+                        Sign in with Google
+                    </button>
+                </div>
+
+                <div id="profile-setup-view" class="hidden">
+                    <h2>Complete Your Profile</h2>
+                    <p>One last step. Please tell us a bit about yourself.</p>
+                    <input type="text" id="name-input" placeholder="Enter Your Name">
+                    <input type="text" id="interest-input" placeholder="Your Main Area of Interest">
+                    <button id="complete-profile-btn">Complete Profile</button>
+                </div>
+
+                <div id="home-page-view" class="hidden">
+                    <h2 id="welcome-message"></h2>
+                    <p>You have successfully logged in!</p>
+                    <button id="sign-out-btn">Sign Out</button>
+                </div>
+            </div>
+        </div> 
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>

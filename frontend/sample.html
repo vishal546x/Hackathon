@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Wavy Road with Stops</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .roadmap-container {
+            width: 500px;
+            height: 700px;
+            position: relative; /* This is needed to position the stops */
+        }
+
+        .road-path {
+            fill: none;
+            stroke: #4a4a4a; /* Dark gray for the road */
+            stroke-width: 60; /* Thickness of the road */
+            stroke-linecap: round;
+        }
+
+        .road-line {
+            fill: none;
+            stroke: white; /* Center line color */
+            stroke-width: 3; /* Center line thickness */
+            stroke-dasharray: 20, 25; /* Creates the dashed effect */
+            stroke-linecap: round;
+        }
+
+        /* Styling for the milestone stops */
+        .stop {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            /* Centering the stop on its coordinates */
+            transform: translate(-50%, -50%);
+        }
+
+        /*
+          Positions for each stop, calculated to sit on the SVG path.
+          - 'left' is the horizontal position (X-axis).
+          - 'top' is the vertical position (Y-axis).
+        */
+        #stop-1 {
+            background-color: #e74c3c; /* Red */
+            left: 145px;
+            top: 480px;
+        }
+        
+        #stop-2 {
+            background-color: #f39c12; /* Orange */
+            left: 250px;
+            top: 250px;
+        }
+
+        #stop-3 {
+            background-color: #2ecc71; /* Green */
+            left: 355px;
+            top: 155px;
+        }
+
+        #stop-4 {
+            background-color: #3498db; /* Blue */
+            left: 250px;
+            top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="roadmap-container">
+        <svg width="100%" height="100%" viewBox="0 0 500 700">
+            <path class="road-path" d="M 250 650 C 100 550, 100 350, 250 250 S 400 150, 250 50" />
+            <path class="road-line" d="M 250 650 C 100 550, 100 350, 250 250 S 400 150, 250 50" />
+        </svg>
+
+        <div id="stop-1" class="stop"></div>
+        <div id="stop-2" class="stop"></div>
+        <div id="stop-3" class="stop"></div>
+        <div id="stop-4" class="stop"></div>
+    </div>
+
+</body>
+</html>

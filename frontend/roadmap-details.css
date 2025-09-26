@@ -1,0 +1,25 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.stage-card-link {
+    text-decoration: none;
+}
+
+.stage-card {
+    border-left: 4px solid #4f46e5; /* Indigo color */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.stage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.progress-bar-container {
+    overflow: hidden; /* Ensures the inner bar respects the border-radius */
+}
+
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}

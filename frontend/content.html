@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Content - SkillRoute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="content.css">
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="home.html" class="text-3xl font-bold text-indigo-600">SkillRoute</a>
+            <div class="flex items-center space-x-4">
+                 <a href="javascript:history.back()" class="text-gray-600 hover:text-indigo-600">&larr; Back to Lessons</a>
+                <button id="sign-out-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition">Sign Out</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <h2 id="lesson-title" class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Loading Lesson...</h2>
+
+        <div id="video-container" class="bg-black rounded-lg shadow-lg overflow-hidden mb-8">
+            </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+            <button id="mark-complete-btn" class="w-full sm:w-auto text-center block bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                Mark as Complete
+            </button>
+            <a id="take-assessment-btn" href="#" class="w-full sm:w-auto text-center block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                Take Assessment
+            </a>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <script src="content.js"></script>
+</body>
+</html>
