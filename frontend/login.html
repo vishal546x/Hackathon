@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to SkillRoute</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="login-container">
+        <h1>Welcome to SkillRoute</h1>
+        <p>Your guided path to a new career starts here.</p>
+        <button id="google-login-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google icon">
+            Sign in with Google
+        </button>
+        <div id="loader" class="hidden"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <script src="login.js"></script>
+</body>
+</html>

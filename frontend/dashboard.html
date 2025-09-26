@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard - SkillRoute</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="logo">SkillRoute</h1>
+            <div class="user-profile">
+                <span id="user-display-name">Loading...</span>
+                <button id="sign-out-btn">Sign Out</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <h2>Welcome to your Dashboard!</h2>
+        <p>The learning roadmap will be displayed here soon.</p>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>
