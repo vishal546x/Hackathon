@@ -1,18 +1,83 @@
 body {
     font-family: 'Inter', sans-serif;
+    background-color: #0f172a; /* slate-900 */
+    background-image: radial-gradient(circle at 10% 80%, rgba(121, 40, 202, 0.2), transparent 40%),
+                      radial-gradient(circle at 90% 20%, rgba(59, 130, 246, 0.2), transparent 40%);
+    color: #cbd5e1; /* slate-300 */
 }
 
+/* --- Header & Dropdown --- */
+.profile-dropdown {
+    display: none; opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+.profile-dropdown.show { display: block; opacity: 1; transform: translateY(0); }
 .role-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    background: rgba(30, 41, 59, 0.5); /* slate-800 with transparency */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUpFade 0.5s ease-out forwards;
 }
 
-.role-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+/* Staggered entry animation */
+.role-card:nth-child(1) { animation-delay: 0.1s; }
+.role-card:nth-child(2) { animation-delay: 0.2s; }
+.role-card:nth-child(3) { animation-delay: 0.3s; }
+.role-card:nth-child(4) { animation-delay: 0.4s; }
+.role-card:nth-child(5) { animation-delay: 0.5s; }
+.role-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideUpFade {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.role-card .flex-grow {
-    flex-grow: 1;
+.role-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        #818cf8, #c084fc, #f0abfc, #c084fc, #818cf8
+    );
+    animation: spin 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.role-card:hover::before {
+    opacity: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    background: #1e293b; /* slate-800 */
+    border-radius: 0.9rem;
+    height: calc(100% - 4px);
+    width: calc(100% - 4px);
+    margin: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.role-card:hover .card-content {
+    background: #334155; /* slate-700 */
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }

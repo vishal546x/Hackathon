@@ -1,6 +1,12 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+/* --- Header & Dropdown --- */
+.profile-dropdown {
+    display: none; opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+.profile-dropdown.show { display: block; opacity: 1; transform: translateY(0); }
 
 .lesson-item:not(:first-child) {
     border-top: 1px solid #e5e7eb; /* gray-200 */

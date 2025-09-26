@@ -1,510 +1,273 @@
-/*
- * style.css
- * This file contains the complete visual styling from your login2.css.
- */
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600;700&display=swap');
-
-/* --- 1. Keyframes --- */
-@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(30px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes aurora { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-8px); } 50% { transform: translateX(8px); } 75% { transform: translateX(-8px); } 100% { transform: translateX(0); } }
-@keyframes neonGlow { 
-    0%, 100% { text-shadow: 0 0 8px var(--glow-color), 0 0 16px var(--glow-color); } 
-    50% { text-shadow: 0 0 4px var(--glow-color), 0 0 10px var(--glow-color); } 
-}
-@keyframes rotateGlobe { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-@keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(180deg); } }
-@keyframes morphBackground { 0%, 100% { border-radius: 40px 40px 40px 40px; } 33% { border-radius: 60px 40px 60px 40px; } 66% { border-radius: 40px 60px 40px 60px; } }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* --- 2. Theme Variables --- */
+/* --- CSS Variables for Theming --- */
 :root {
-    /* Dark Theme (Default) */
-    --primary-color: #4285F4;
-    --accent-color: #38A3A5;
-    --dark-bg: #142d4c;
-    --card-bg: rgba(27, 38, 59, 0.7);
-    --text-neon: #e0f0f0;
-    --text-input-color: #e0e0e0;
-    --input-bg-light: rgba(36, 52, 71, 0.6);
-    --input-border: #3a506b;
-    --success-btn: #38A3A5;
-    --success-btn-hover: #50d8d7;
-    --danger-btn: #dc3545;
-    --glow-color: #38A3A5;
-    --branding-bg: linear-gradient(145deg, rgba(20,45,76,0.85), rgba(32,58,67,0.85));
-    --body-bg: linear-gradient(-45deg, var(--dark-bg), #203a43, #2c5364, #1b263b);
-    --shadow-color: rgba(56, 163, 165, 0.8);
-    --border-color: rgba(56, 163, 165, 0.4);
-}
-
-/* Light Theme */
-[data-theme="light"] {
-    --primary-color: #1e88e5; 
-    --accent-color: #007bff;  
-    --dark-bg: #f8f9fa;               
-    --card-bg: rgba(255, 255, 255, 0.98); 
-    --pane-blue: #00a0e9; 
-    --branding-bg: linear-gradient(145deg, #aed4e7, #b8dee9); 
-    --text-neon: #212529;             
-    --text-input-color: #212529;
-    --input-bg-light: #f1f3f4;       
-    --input-border: #dee2e6;       
-    --success-btn: #28a745;         
-    --success-btn-hover: #218838;
-    --danger-btn: #dc3545;        
-    --glow-color: #007bff;        
-    --body-bg: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f0f2f5); 
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-color: rgba(0, 123, 255, 0.2);
+    --font-family: 'Inter', sans-serif;
     
-    --light-shadow-lift: 0 8px 15px rgba(0, 0, 0, 0.1);
-    --light-shadow-focus: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    /* Light Theme Colors */
+    --background-primary: #f8f9fa; /* Lighter, cleaner background */
+    --background-secondary: #ffffff;
+    --background-branding-overlay: rgba(17, 24, 39, 0.8); /* Dark overlay for text readability */
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-on-branding: #ffffff;
+    --accent-primary: #3b82f6; /* A modern, friendly blue */
+    --accent-focus-ring: rgba(59, 130, 246, 0.2);
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.05);
 }
 
-/* --- Theme Toggle Button --- */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: var(--accent-color);
-    border: none;
-    border-radius: 50px;
-    width: 60px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--shadow-color);
+body[data-theme="dark"] {
+    /* Dark Theme Colors */
+    --background-primary: #121212;
+    --background-secondary: #1e1e1e;
+    --background-branding-overlay: rgba(0, 0, 0, 0.7);
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-on-branding: #f8f9fa;
+    --accent-primary: #3b82f6;
+    --accent-focus-ring: rgba(59, 130, 246, 0.3);
+    --border-color: #495057;
+    --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px var(--shadow-color);
+/* --- Global & Reset Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.theme-toggle::before {
-    content: '🌙';
-    position: absolute;
-    left: 8px;
-    transition: all 0.3s ease;
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevents all scrolling on the page */
 }
 
-.theme-toggle::after {
-    content: '☀️';
-    position: absolute;
-    right: 8px;
-    transition: all 0.3s ease;
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.theme-toggle-indicator {
-    width: 22px;
-    height: 22px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    left: 4px;
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+h1, h2 {
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-[data-theme="light"] .theme-toggle-indicator {
-    transform: translateX(26px);
+p {
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
-/* --- Crucial Utility Class for View Switching --- */
 .hidden {
     display: none !important;
 }
 
-/* --- 3. BASE & OUTER CONTAINER --- */
-body {
-    font-family: 'Poppins', 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    color: var(--text-neon);
-    background: var(--body-bg);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    overflow: hidden;
-    transition: all 0.5s ease;
-    position: relative;
-}
-
-/* Decorative Elements */
-body::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, transparent 20%, var(--accent-color) 20.5%, var(--accent-color) 21%, transparent 21.5%);
-    background-size: 30px 30px;
-    opacity: 0.03;
-    animation: float 20s ease-in-out infinite;
-    pointer-events: none;
-}
-
+/* --- Main No-Scroll Layout --- */
 .split-screen-container {
     display: flex;
-    width: 90%;
-    max-width: 1200px;
-    height: 650px;
-    background-color: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border-radius: 40px;
-    box-shadow: 
-        0 0 50px var(--shadow-color),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    position: relative;
-    z-index: 10;
-    animation: fadeInSlideUp 1.2s ease-out forwards, morphBackground 10s ease-in-out infinite;
-    border: 1px solid var(--border-color);
-    transition: all 0.5s ease;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* --- 4. LEFT PANE: BRANDING --- */
-.branding-pane {
-    flex: 1.2;
-    background: var(--branding-bg);
-    padding: 50px;
-    color: var(--text-neon);
+.branding-pane,
+.login-pane {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    height: 100%;
+    overflow-y: auto; /* Allows internal scroll if content overflows on tiny screens */
+}
+
+/* --- Branding Pane (Left Side) --- */
+.branding-pane {
+ background-image: url('./images/login-bg.jpg');    background-size: cover;
+    background-position: center;
+    position: relative; /* Needed for the overlay */
+    color: var(--text-on-branding);
     justify-content: space-between;
-    align-items: flex-start;
-    clip-path: polygon(0 0, 85% 0, 95% 100%, 0% 100%);
-    border-right: 2px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
-    animation: slideInFromLeft 1s ease-out;
-    transition: all 0.5s ease;
+    text-align: left;
+    overflow: hidden; /* Ensures image and overlay are contained */
 }
 
 .branding-pane::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, var(--accent-color) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.05;
-    animation: float 25s linear infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-branding-overlay); /* Dark overlay */
+    z-index: 1;
 }
 
-.globe-icon {
+.branding-pane > * { /* Ensure content is above the overlay */
     position: relative;
-    animation: float 4s ease-in-out infinite;
+    z-index: 2;
 }
 
-.globe-icon i {
-    font-size: 3.2em;
-    color: var(--accent-color);
-    margin-bottom: 25px;
-    animation: rotateGlobe 30s linear infinite, neonGlow 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px var(--glow-color));
-    transition: all 0.3s ease;
+.branding-pane .globe-icon {
+    font-size: 2.5rem;
 }
 
-.text-content {
-    animation: fadeInSlideUp 1.5s ease-out 0.3s both;
-}
-
-.text-content h1 {
-    color: var(--text-neon);
-    font-size: 2.2em;
+.branding-pane .text-content h1 {
+    font-size: 2.5rem;
     font-weight: 700;
-    line-height: 1.4;
-    animation: neonGlow 4s infinite alternate;
-    background: linear-gradient(45deg, var(--text-neon), var(--accent-color));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.3s ease;
+    margin-top: 1rem;
+    color: var(--text-on-branding);
 }
 
-.text-content p {
-    color: var(--text-neon);
-    opacity: 0.85;
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-top: 20px;
-    transition: all 0.3s ease;
+.branding-pane .text-content p {
+    font-size: 1.1rem;
+    max-width: 450px;
+    opacity: 0.8;
+    color: var(--text-on-branding);
 }
 
 .main-illustration {
-    max-width: 60%;
-    height: auto;
-    filter: drop-shadow(0 15px 35px var(--shadow-color));
-    animation: float 6s ease-in-out infinite, pulse 8s ease-in-out infinite;
-    transition: all 0.3s ease;
+    display: none; /* The background-image replaces this */
 }
 
-/* --- 5. RIGHT PANE: LOGIN CONTENT --- */
+/* --- Login Pane (Right Side) --- */
 .login-pane {
-    flex: 1;
-    background-color: transparent;
-    padding: 60px 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: var(--background-secondary);
     align-items: center;
-    position: relative;
-    animation: slideInFromRight 1s ease-out 0.2s both;
-    transition: all 0.5s ease;
 }
 
-/* The inner content container */
 #container {
-    background: none;
-    padding: 0;
-    margin: 0;
     width: 100%;
-    max-width: 100%;
-    box-shadow: none;
-    animation: none;
-    display: block;
-}
-
-/* Style the content of the active view */
-#login-view, #profile-setup-view, #home-page-view {
-    width: 100%;
-    padding: 20px 0;
+    max-width: 380px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeInSlideUp 0.8s ease-out;
-    transition: all 0.3s ease;
 }
 
-/* --- Enhanced Content Styling --- */
-#login-view h1, #profile-setup-view h2, #home-page-view h2 {
-    color: var(--accent-color);
-    font-weight: 700;
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    animation: neonGlow 3s infinite alternate;
-    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
+#container h1, #container h2 {
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
 }
 
-#login-view h1::after, #profile-setup-view h2::after, #home-page-view h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: var(--accent-color);
-    border-radius: 2px;
-    animation: pulse 2s ease-in-out infinite;
+#container p {
+    margin-bottom: 2.5rem;
 }
 
-#login-view p, #profile-setup-view p, #home-page-view p {
-    color: var(--text-neon);
-    opacity: 0.8;
-    margin-bottom: 30px;
-    font-size: 1.1em;
-    line-height: 1.5;
-    animation: fadeInSlideUp 1.2s ease-out 0.2s both;
-}
-
-/* Enhanced Input Styling */
-input {
-    width: calc(100% - 24px);
-    padding: 15px 12px;
-    margin-bottom: 20px;
-    border: 2px solid var(--input-border);
-    border-radius: 12px;
-    font-size: 16px;
-    color: var(--text-input-color);
-    background-color: var(--input-bg-light);
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    position: relative;
-    font-family: inherit;
-}
-
-input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 
-        0 0 0 3px rgba(56, 163, 165, 0.1),
-        0 0 15px var(--glow-color);
-    outline: none;
-    background-color: var(--input-bg-light);
-    transform: translateY(-2px);
-}
-
-/* Enhanced Button Styling */
+/* --- Buttons --- */
 button {
-    width: 100%;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 16px;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
     font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    margin-top: 15px;
-    position: relative;
-    overflow: hidden;
-    font-family: inherit;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
+    padding: 0.85rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-button:active {
-    transform: translateY(-1px);
 }
 
 .google-btn {
-    background: linear-gradient(135deg, var(--primary-color), #357ae8);
-    color: white;
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
-}
-
-.google-btn img {
-    background-color: white;
-    padding: 2px;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 .google-btn:hover {
-    background: linear-gradient(135deg, #357ae8, var(--primary-color));
-    box-shadow: 0 6px 25px rgba(66, 133, 244, 0.4);
-    transform: translateY(-2px);
+    background-color: var(--background-primary);
 }
 
-#complete-profile-btn {
-    background: linear-gradient(135deg, var(--success-btn), #20c997);
+.google-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+#complete-profile-btn, #sign-out-btn {
+    background-color: var(--accent-primary);
     color: white;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
-#complete-profile-btn:hover {
-    background: linear-gradient(135deg, #20c997, var(--success-btn));
-    box-shadow: 0 6px 25px rgba(40, 167, 69, 0.4);
+#complete-profile-btn:hover, #sign-out-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
-#sign-out-btn {
-    background: linear-gradient(135deg, var(--danger-btn), #c82333);
-    color: white;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+/* --- Form Inputs --- */
+input[type="text"] {
+    font-family: var(--font-family);
+    width: 100%;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#sign-out-btn:hover {
-    background: linear-gradient(135deg, #c82333, var(--danger-btn));
-    box-shadow: 0 6px 25px rgba(220, 53, 69, 0.4);
-}
-
-/* Light Theme Overrides */
-[data-theme="light"] .split-screen-container {
-    box-shadow: 0 0 10px var(--shadow-color), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-[data-theme="light"] .globe-icon i {
-    filter: drop-shadow(0 0 4px var(--glow-color));
-    animation: rotateGlobe 30s linear infinite;
-}
-[data-theme="light"] .main-illustration:hover {
-    filter: drop-shadow(0 6px 15px var(--shadow-color));
-}
-[data-theme="light"] input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 
-        0 0 0 1px rgba(33, 150, 243, 0.08),
-        0 0 4px rgba(33, 150, 243, 0.1);
+input[type="text"]:focus {
     outline: none;
-    background-color: var(--input-bg-light);
-    transform: translateY(-2px);
-}
-[data-theme="light"] button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-focus-ring);
 }
 
-[data-theme="light"] .text-content h1,
-[data-theme="light"] #login-view h1, 
-[data-theme="light"] #profile-setup-view h2, 
-[data-theme="light"] #home-page-view h2 {
-    animation: none;
-    background: var(--text-neon);
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
-}
-[data-theme="light"] #login-view h1::after, 
-[data-theme="light"] #profile-setup-view h2::after, 
-[data-theme="light"] #home-page-view h2::after {
-    animation: none;
+/* --- Theme Toggle Switch --- */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 52px;
+    height: 28px;
+    background-color: color-mix(in srgb, var(--text-primary) 30%, transparent);
+    border-radius: 14px;
+    padding: 4px;
+    cursor: pointer;
+    border: none;
 }
 
-/* Mobile Adjustments */
+.theme-toggle-indicator {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body[data-theme="dark"] .theme-toggle-indicator {
+    transform: translateX(24px);
+}
+
+/* --- Media Queries for Responsiveness --- */
 @media (max-width: 900px) {
     .split-screen-container {
         flex-direction: column;
-        height: auto;
-        max-height: 95vh;
-        width: 95%;
-        margin: 20px auto;
-        border-radius: 20px;
     }
+
     .branding-pane {
-        display: none; /* Hide branding pane on smaller screens to focus on login */
+        flex: 0 0 40%; /* Branding pane takes 40% of the height */
+        padding: 2rem;
+        justify-content: flex-end; /* Align content to the bottom */
     }
+
     .login-pane {
-        padding: 40px 30px;
-        border-radius: 20px;
+        flex: 1 1 auto; /* Login pane takes the remaining height */
     }
-    #login-view h1, #profile-setup-view h2, #home-page-view h2 {
-        font-size: 2em;
+}
+
+@media (max-width: 480px) {
+    .branding-pane {
+        flex: 0 0 35%; /* Branding pane takes less space on small mobile */
+    }
+
+    #container {
+        padding: 0 1.5rem;
+    }
+    
+    #container h1, #container h2 {
+        font-size: 1.75rem;
     }
 }
